@@ -113,11 +113,13 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 	positions[4] = G4ThreeVector(0.*cm,0.*cm,3*halflenght);
 	positions[5] = G4ThreeVector(0.*cm,0.*cm,5*halflenght);
 
+	this->Trigger =
 	new G4PVPlacement(NULL,positions[0],volume[0],"trigger",	LWorld,false,0,false);
 	new G4PVPlacement(NULL,positions[1],volume[1],"tcollimator",LWorld,false,0,false);
 	new G4PVPlacement(NULL,positions[2],volume[2],"rsource",	LWorld,false,0,false);
 	new G4PVPlacement(NULL,positions[3],volume[3],"rcollimator",LWorld,false,0,false);
 	new G4PVPlacement(NULL,positions[4],volume[4],"matter",		LWorld,false,0,false);
+	this->Sensor = 
 	new G4PVPlacement(NULL,positions[5],volume[5],"sensor",		LWorld,false,0,false);
 	/*** Trigger Construction ***/
 
