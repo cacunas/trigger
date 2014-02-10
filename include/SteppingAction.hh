@@ -16,7 +16,7 @@ public:
     
 private:
   DetectorConstruction* detector;
-  EventAction*          eventaction;  
+  EventAction*          eventAction;  
 };
 
 #endif

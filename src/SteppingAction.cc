@@ -3,6 +3,7 @@
 #include "SteppingAction.hh"
 
 #include "DetectorConstruction.hh"
+#include "EventAction.hh"
 
 #include "G4Step.hh"
 #include "G4RunManager.hh"
@@ -11,7 +12,7 @@ SteppingAction::SteppingAction()
 {
   detector = (DetectorConstruction*)
              G4RunManager::GetRunManager()->GetUserDetectorConstruction();
-  eventaction = (EventAction*)
+  eventAction = (EventAction*)
                 G4RunManager::GetRunManager()->GetUserEventAction();               
  }
 
@@ -31,7 +32,7 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep)
   if (aStep->GetTrack()->GetDefinition()->GetPDGCharge() != 0.)
     stepl = aStep->GetStepLength();
       
-  if (volume == detector->GetTrigger())	eventaction->AddAbs(edep,stepl);
-  if (volume == detector->GetSensor())	eventaction->AddGap(edep,stepl);
+  if (volume == detector->GetTrigger())	eventAction->AddNOTP();
+  if (volume == detector->GetSensor())	eventAction->AddNOSP();
   
 }

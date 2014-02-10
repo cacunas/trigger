@@ -55,3 +55,13 @@ void EventAction::setNOSP(int n)
 {
 	NrOfSensorParticles = n;
 }
+
+void EventAction::AddNOTP()
+{
+	NrOfTriggerParticles++;
+}
+
+void EventAction::AddNOSP()
+{
+	NrOfSensorParticles++;
+}

@@ -21,11 +21,11 @@ public:
     void EndOfEventAction(const G4Event*);
     void setNOTP(int);
     void setNOSP(int);
+    void AddNOTP();
+    void AddNOSP();
     int getNOTP() {return NrOfTriggerParticles;}
     int getNOSP() {return NrOfSensorParticles;}
 
 };
 
 #endif
-
-/* GIT re culiado */

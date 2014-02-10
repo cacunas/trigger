@@ -11,6 +11,7 @@
 #include "PhysicsList.hh"
 #include "RunAction.hh"
 #include "EventAction.hh"
+#include "SteppingAction.hh"
 
 #ifdef G4VIS_USE
 #include "G4VisExecutive.hh"
@@ -34,11 +35,12 @@ int main(int argc,char **argv)
 
    G4RunManager* runManager = new G4RunManager;
 
-   runManager->SetUserInitialization(new DetectorConstruction);
-   runManager->SetUserInitialization(new PhysicsList);
-   runManager->SetUserAction(new PrimaryGeneratorAction);
+   runManager->SetUserInitialization(new DetectorConstruction());
+   runManager->SetUserInitialization(new PhysicsList());
+   runManager->SetUserAction(new PrimaryGeneratorAction());
    runManager->SetUserAction(new RunAction());
    runManager->SetUserAction(new EventAction());
+   runManager->SetUserAction(new SteppingAction());
 
    runManager->Initialize();
    G4UImanager* UImanager = G4UImanager::GetUIpointer();
