@@ -44,6 +44,10 @@ globals.hh
 G4UserRunAction.hh
 ../include/G4UserRunAction.hh
 
+../include/SteppingAction.hh
+G4UserSteppingAction.hh
+../include/G4UserSteppingAction.hh
+
 /home/cacunas/Documentos/work/rene/trigger/dummyCode/main.cc
 vector
 -
@@ -65,34 +69,12 @@ RunAction.hh
 /home/cacunas/Documentos/work/rene/trigger/dummyCode/RunAction.hh
 EventAction.hh
 /home/cacunas/Documentos/work/rene/trigger/dummyCode/EventAction.hh
+SteppingAction.hh
+/home/cacunas/Documentos/work/rene/trigger/dummyCode/SteppingAction.hh
 G4VisExecutive.hh
 /home/cacunas/Documentos/work/rene/trigger/dummyCode/G4VisExecutive.hh
 G4UIExecutive.hh
 /home/cacunas/Documentos/work/rene/trigger/dummyCode/G4UIExecutive.hh
-
-/home/cacunas/Documentos/work/rene/trigger/dummyCode/src/EventAction.cc
-EventAction.hh
-/home/cacunas/Documentos/work/rene/trigger/dummyCode/src/EventAction.hh
-G4Event.hh
-/home/cacunas/Documentos/work/rene/trigger/dummyCode/src/G4Event.hh
-RunAction.hh
-/home/cacunas/Documentos/work/rene/trigger/dummyCode/src/RunAction.hh
-G4Event.hh
-/home/cacunas/Documentos/work/rene/trigger/dummyCode/src/G4Event.hh
-G4RunManager.hh
-/home/cacunas/Documentos/work/rene/trigger/dummyCode/src/G4RunManager.hh
-G4EventManager.hh
-/home/cacunas/Documentos/work/rene/trigger/dummyCode/src/G4EventManager.hh
-G4OpticalPhoton.hh
-/home/cacunas/Documentos/work/rene/trigger/dummyCode/src/G4OpticalPhoton.hh
-G4SDManager.hh
-/home/cacunas/Documentos/work/rene/trigger/dummyCode/src/G4SDManager.hh
-G4StepPoint.hh
-/home/cacunas/Documentos/work/rene/trigger/dummyCode/src/G4StepPoint.hh
-G4VHitsCollection.hh
-/home/cacunas/Documentos/work/rene/trigger/dummyCode/src/G4VHitsCollection.hh
-G4THitsCollection.hh
-/home/cacunas/Documentos/work/rene/trigger/dummyCode/src/G4THitsCollection.hh
 
 /usr/local/include/Geant4/CLHEP/Geometry/BasicVector3D.h
 iosfwd
@@ -912,12 +894,6 @@ G4ParticleDefinition.hh
 
 /usr/local/include/Geant4/G4ClassificationOfNewTrack.hh
 
-/usr/local/include/Geant4/G4CollectionNameVector.hh
-globals.hh
-/usr/local/include/Geant4/globals.hh
-vector
--
-
 /usr/local/include/Geant4/G4Color.hh
 G4Colour.hh
 /usr/local/include/Geant4/G4Colour.hh
@@ -1251,12 +1227,6 @@ G4Allocator.hh
 /usr/local/include/Geant4/G4Allocator.hh
 G4VHitsCollection.hh
 /usr/local/include/Geant4/G4VHitsCollection.hh
-vector
--
-
-/usr/local/include/Geant4/G4HCtable.hh
-globals.hh
-/usr/local/include/Geant4/globals.hh
 vector
 -
 
@@ -2380,22 +2350,6 @@ globals.hh
 G4EventManager.hh
 /usr/local/include/Geant4/G4EventManager.hh
 
-/usr/local/include/Geant4/G4SDManager.hh
-globals.hh
-/usr/local/include/Geant4/globals.hh
-G4SDStructure.hh
-/usr/local/include/Geant4/G4SDStructure.hh
-G4HCtable.hh
-/usr/local/include/Geant4/G4HCtable.hh
-
-/usr/local/include/Geant4/G4SDStructure.hh
-globals.hh
-/usr/local/include/Geant4/globals.hh
-G4VSensitiveDetector.hh
-/usr/local/include/Geant4/G4VSensitiveDetector.hh
-vector
--
-
 /usr/local/include/Geant4/G4SPSAngDistribution.hh
 G4PhysicsOrderedFreeVector.hh
 /usr/local/include/Geant4/G4PhysicsOrderedFreeVector.hh
@@ -2483,14 +2437,6 @@ G4Scene.hh
 /usr/local/include/Geant4/G4Scene.hh
 vector
 -
-
-/usr/local/include/Geant4/G4SensitiveVolumeList.hh
-vector
--
-G4LogicalVolume.hh
-/usr/local/include/Geant4/G4LogicalVolume.hh
-G4VPhysicalVolume.hh
-/usr/local/include/Geant4/G4VPhysicalVolume.hh
 
 /usr/local/include/Geant4/G4SigmaMinus.hh
 globals.hh
@@ -3244,18 +3190,6 @@ G4VGraphicsSystem.hh
 G4VGraphicsSystem.hh
 /usr/local/include/Geant4/G4VGraphicsSystem.hh
 
-/usr/local/include/Geant4/G4VReadOutGeometry.hh
-G4SensitiveVolumeList.hh
-/usr/local/include/Geant4/G4SensitiveVolumeList.hh
-G4Step.hh
-/usr/local/include/Geant4/G4Step.hh
-G4TouchableHistory.hh
-/usr/local/include/Geant4/G4TouchableHistory.hh
-
-/usr/local/include/Geant4/G4VSDFilter.hh
-globals.hh
-/usr/local/include/Geant4/globals.hh
-
 /usr/local/include/Geant4/G4VSceneHandler.hh
 globals.hh
 /usr/local/include/Geant4/globals.hh
@@ -3271,22 +3205,6 @@ G4VSceneHandler.icc
 /usr/local/include/Geant4/G4VSceneHandler.icc
 
 /usr/local/include/Geant4/G4VSceneHandler.icc
-
-/usr/local/include/Geant4/G4VSensitiveDetector.hh
-G4VHit.hh
-/usr/local/include/Geant4/G4VHit.hh
-G4Step.hh
-/usr/local/include/Geant4/G4Step.hh
-G4HCofThisEvent.hh
-/usr/local/include/Geant4/G4HCofThisEvent.hh
-G4VReadOutGeometry.hh
-/usr/local/include/Geant4/G4VReadOutGeometry.hh
-G4TouchableHistory.hh
-/usr/local/include/Geant4/G4TouchableHistory.hh
-G4CollectionNameVector.hh
-/usr/local/include/Geant4/G4CollectionNameVector.hh
-G4VSDFilter.hh
-/usr/local/include/Geant4/G4VSDFilter.hh
 
 /usr/local/include/Geant4/G4VSolid.hh
 G4Types.hh
