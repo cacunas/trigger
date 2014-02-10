@@ -33,6 +33,10 @@ int main(int argc,char **argv)
       return -1;
    }
 
+   ofstream file;
+   file.open("output.txt");
+   file.close();
+   
    G4RunManager* runManager = new G4RunManager;
 
    runManager->SetUserInitialization(new DetectorConstruction());
