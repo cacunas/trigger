@@ -7,6 +7,10 @@
 #include "G4ThreeVector.hh"
 #include "Randomize.hh"
 
+#include "G4ParticleDefinition.hh"
+#include "G4PhysicalConstants.hh"
+#include "G4SystemOfUnits.hh"
+
 PrimaryGeneratorAction::PrimaryGeneratorAction()
 	: G4VUserPrimaryGeneratorAction(),
 	  particleSource(NULL),
@@ -29,35 +33,40 @@ PrimaryGeneratorAction::~PrimaryGeneratorAction()
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* Event)
 {
+  G4double cosAlpha = 1. - G4UniformRand()*(1.- std::cos(15*deg));
+  G4double sinAlpha = std::sqrt(1. - cosAlpha*cosAlpha);
+  G4double psi      = twopi*G4UniformRand();  //psi uniform in [0, 2*pi]  
+  G4ThreeVector dir(sinAlpha*std::cos(psi),sinAlpha*std::sin(psi),cosAlpha);
 
-	//G4double phi = twopi*G4UniformRand();
-	//G4double costheta = G4UniformRand();
-	//G4double theta = std::acos(costheta);
-	/*G4double sintheta = std::sin(theta);
-	G4double sinphi = std::sin(phi);
-	G4double cosphi = std::cos(phi);*/
-//	G4ThreeVector direction(sintheta*sinphi,sintheta*cosphi,costheta);
+	
+  G4double x,y,z;
+  G4double innerRadius = .5*mm;
+  G4double halflenght  = 1.75*mm;
 
-	G4double x,y,z;
-	G4double r = 1.*mm;
-	do{
-		x = 2*r*G4UniformRand()-r;
-		y = 2*r*G4UniformRand()-r;	
-	}while(x*x+y*y>r*r);
+  x = innerRadius*(2*G4UniformRand()-1);
+  y = x;
+  z= -2*halflenght*G4UniformRand();
+  
+   // do
+   //   {
+   //   x = innerRadius*G4UniformRand();
+   //   y = x;
+   //   z = -halfLenght+halfLenght*G4UniformRand();
 
-	z = -0.6*cm + 0.1*(2.0*G4UniformRand()-1.0)*cm;
+   //   aux = (G4UniformRand()-.5)*
+   //   } while(x*x+y*y>r*r);
 
-	G4ThreeVector position(x,y,z);
-	G4ThreeVector direction(0.,0.,1.);
+  G4ThreeVector position(x,y,z);
+  G4ThreeVector direction(0.,0.,1.);
 
-	particleGun->SetParticlePosition(position);
+  particleGun->SetParticlePosition(position);
 
-	particleGun->SetParticleMomentumDirection(direction);
-	particleGun->GeneratePrimaryVertex(Event);
+  particleGun->SetParticleMomentumDirection(dir);
+  particleGun->GeneratePrimaryVertex(Event);
 
-	//particleGun->SetParticleMomentumDirection(-direction);
-	//particleGun->GeneratePrimaryVertex(Event);
+  particleGun->SetParticleMomentumDirection(-dir);
+  particleGun->GeneratePrimaryVertex(Event);
 
-//	particleSource->GeneratePrimaryVertex(Event);
+  particleSource->GeneratePrimaryVertex(Event);
 
 }
