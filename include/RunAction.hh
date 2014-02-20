@@ -4,8 +4,8 @@
 #include "globals.hh"
 #include "G4UserRunAction.hh"
 
-//#include "TNtupleD.h"
-//#include "TFile.h"
+
+
 
 class G4Run;
 
@@ -17,13 +17,9 @@ public:
     void BeginOfRunAction(const G4Run*);
     void EndOfRunAction(const G4Run*);
 
-/*    TNtupleD* tupleDetector0;
-    TNtupleD* tupleDetector1;
-    TNtupleD* tupleDetector2;*/
 
 private:
 
-//    TFile* file;
 };
 
 #endif

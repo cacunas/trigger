@@ -30,3 +30,5 @@ Al tertminar la ejecución, si todo funcionó bien, el programam genera un archi
 Finalmente, para limpiar se puede ejecutar 
 
 $ make clean
+
+# Si tiene menos de 10 [keV], no considerar partícula

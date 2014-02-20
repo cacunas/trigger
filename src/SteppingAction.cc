@@ -7,6 +7,7 @@
 
 #include "G4Step.hh"
 #include "G4RunManager.hh"
+#include "G4ParticleTypes.hh"
 
 SteppingAction::SteppingAction()                                         
 {
@@ -31,8 +32,11 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep)
   G4double stepl = 0.;
   if (aStep->GetTrack()->GetDefinition()->GetPDGCharge() != 0.)
     stepl = aStep->GetStepLength();
-      
-  if (volume == detector->GetTrigger())	eventAction->AddNOTP();
-  if (volume == detector->GetSensor())	eventAction->AddNOSP();
-  
+  if(eventaction->GetDefinition() == G4Gamma::Gamma())
+    {
+      if (volume == detector->GetTrigger())	eventAction->AddNOTP();
+      if (volume == detector->GetSensor())	eventAction->AddNOSP();
+    }      
 }
+
+Suggested-by: Cristian Acuña <cristian.acuna.elo1@gmail.com>

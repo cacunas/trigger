@@ -1,7 +1,5 @@
 #include "EventAction.hh"
 #include "G4Event.hh"
-//#include "SensitiveDetector.hh"
-//#include "Hits.hh"
 #include "RunAction.hh"
 #include "G4Event.hh"
 #include "G4RunManager.hh"
@@ -11,6 +9,8 @@
 #include "G4StepPoint.hh"
 #include "G4VHitsCollection.hh"
 #include "G4THitsCollection.hh"
+
+#include "Analysis.hh"
 
 EventAction::EventAction()
 {
@@ -41,7 +41,13 @@ void EventAction::EndOfEventAction(const G4Event* event)
 				<< NrOfSensorParticles << G4endl;
 		outfile << "\tProbability P(S|T)=" 
 				<< NrOfSensorParticles/NrOfTriggerParticles;
-		outfile << G4endl << G4endl;	
+		outfile << G4endl << G4endl;
+
+
+		G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+
+		analysisManager->FillH1(1,NrOfTriggerParticles);
+		analysisManager->FillH1(2,NrOfSensorParticles);
 	}
 	
 }
