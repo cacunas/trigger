@@ -33,19 +33,31 @@ PrimaryGeneratorAction::~PrimaryGeneratorAction()
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* Event)
 {
-  G4double cosAlpha = 1. - G4UniformRand()*(1.- std::cos(15*deg));
-  G4double sinAlpha = std::sqrt(1. - cosAlpha*cosAlpha);
-  G4double psi      = twopi*G4UniformRand();  //psi uniform in [0, 2*pi]  
-  G4ThreeVector dir(sinAlpha*std::cos(psi),sinAlpha*std::sin(psi),cosAlpha);
+  // G4double cosAlpha = 1. - G4UniformRand()*(1.- std::cos(15*deg));
+  // G4double sinAlpha = std::sqrt(1. - cosAlpha*cosAlpha);
+  // G4double psi      = twopi*G4UniformRand();  //psi uniform in [0, 2*pi]  
+  // G4ThreeVector dir(sinAlpha*std::cos(psi),sinAlpha*std::sin(psi),cosAlpha);
 
-	
-  G4double x,y,z;
-  G4double innerRadius = .5*mm;
-  G4double halflenght  = 1.75*mm;
+  	G4double x,y,z;
+	G4double r = .5*mm;
+	do{
+		x = 2*r*G4UniformRand()-r;
+		y = 2*r*G4UniformRand()-r;	
+	}while(x*x+y*y>r*r);
 
-  x = innerRadius*(2*G4UniformRand()-1);
-  y = x;
-  z= -2*halflenght*G4UniformRand();
+	z = -1.75*mm + 1.75*(2.0*G4UniformRand()-1.0)*mm;
+
+
+  // G4double x,y,z;
+  // G4double innerRadius = .5*mm;
+  // G4double halflenght  = 1.75*mm;
+
+  // do{
+  //     x = innerRadius*(2*G4UniformRand()-1);
+  //     y = x;
+  //     z= -2*halflenght*G4UniformRand();
+  // } while (x*x+y*y>innerRadius*innerRadius);
+  
   
    // do
    //   {
@@ -61,12 +73,19 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* Event)
 
   particleGun->SetParticlePosition(position);
 
+  particleGun->SetParticleMomentumDirection(direction);
+  particleGun->GeneratePrimaryVertex(Event);
+
+
+  particleGun->SetParticlePosition(position);
+  G4ThreeVector dir(0.,0.,-1.);
   particleGun->SetParticleMomentumDirection(dir);
   particleGun->GeneratePrimaryVertex(Event);
 
-  particleGun->SetParticleMomentumDirection(-dir);
-  particleGun->GeneratePrimaryVertex(Event);
+  
+  // particleGun->SetParticleMomentumDirection(-dir);
+  // particleGun->GeneratePrimaryVertex(Event);
 
-  particleSource->GeneratePrimaryVertex(Event);
+  // particleSource->GeneratePrimaryVertex(Event);
 
 }
