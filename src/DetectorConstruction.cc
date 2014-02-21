@@ -86,7 +86,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 	G4double phi_i = 0.*deg;
 	G4double phi_f = 360.*deg;
 
-	G4double worldEdge = 20*cm;
+	G4double worldEdge = 10*cm;
 
 	G4Box* SWorld = new G4Box("solidWorld", worldEdge,worldEdge,worldEdge);
 	G4LogicalVolume* LWorld = new G4LogicalVolume(SWorld, Air, "LWorld");
