@@ -32,3 +32,14 @@ Finalmente, para limpiar se puede ejecutar
 $ make clean
 
 # Si tiene menos de 10 [keV], no considerar partícula
+
+
+==========================
+Especificaciones de Tamaño
+==========================
+
+-Largo del Sensor:			50   [mm]
+-Largo del Colimador:			 7   [mm]
+-Diámetro apertura colimador:		 3   [mm]
+-Diámetro exterior colimador:		25.7 [mm]
+-Distancia 'x' a la fuente:		10   [mm]
