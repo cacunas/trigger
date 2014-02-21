@@ -11,15 +11,26 @@ class G4Run;
 
 class RunAction : public G4UserRunAction {
 public:
-    RunAction();
-    ~RunAction();
+  RunAction();
+  ~RunAction();
 
-    void BeginOfRunAction(const G4Run*);
-    void EndOfRunAction(const G4Run*);
+  void BeginOfRunAction(const G4Run*);
+  void EndOfRunAction(const G4Run*);
 
+  void AddTriggerEvent()
+  {
+    triggerEvent++;
+  }
+  void AddSensorEvent()
+  {
+    sensorEvent++;
+  }
+  
+  
 
 private:
-
+  G4int triggerEvent, sensorEvent;
+  
 };
 
 #endif
