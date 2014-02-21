@@ -46,11 +46,13 @@ void EventAction::EndOfEventAction(const G4Event* event)
 
 		G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 
-		G4RunManager* runmanager = G4RunManager::Instance();
+		G4RunManager* runmanager = G4RunManager::GetRunManager();
+		RunAction* runaction = (RunAction*) runmanager->GetUserRunAction();
+		
 
-		runmanager->GetUserRunAction()->AddTriggerEvent();
+		runaction->AddTriggerEvent();
 
-		if (NrOfSensorParticles)  runmanager->GetUserRunAction()->AddSensorEvent();
+		if (NrOfSensorParticles)  runaction->AddSensorEvent();
 		
 
 		analysisManager->FillH1(1,NrOfTriggerParticles);
