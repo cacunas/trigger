@@ -80,9 +80,9 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 	G4Tubs* solidVol[6];
 	G4ThreeVector positions[6];
 
-	G4double innerRadius = 0.05*cm;
-	G4double outerRadius = 1.285*cm;
-	G4double halflenght = (0.35/2)*cm;
+	G4double innerRadius = (3/2)*mm;
+	G4double outerRadius = (25.7/2)*mm;
+	G4double halflenght = (50/2)*mm;
 	G4double phi_i = 0.*deg;
 	G4double phi_f = 360.*deg;
 
@@ -93,23 +93,23 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 	G4VPhysicalVolume* PWorld = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,0.),LWorld,"World",NULL,false,0,false);
 
 	solidVol[0] = new G4Tubs("Vol_0",0.*cm,outerRadius,halflenght,phi_i,phi_f);			//trigger
-	solidVol[1] = new G4Tubs("Vol_1",innerRadius,outerRadius,halflenght,phi_i,phi_f);	//first collimator
-	solidVol[2] = new G4Tubs("Vol_2",0.*cm,outerRadius,halflenght,phi_i,phi_f);	//radiation source
-	solidVol[3] = new G4Tubs("Vol_3",innerRadius,outerRadius,halflenght,phi_i,phi_f);	//second collimator
-	solidVol[4] = new G4Tubs("Vol_4",0.*cm,outerRadius,halflenght,phi_i,phi_f);			//material
+	solidVol[1] = new G4Tubs("Vol_1",innerRadius,outerRadius,7.*mm,phi_i,phi_f);	//first collimator
+	solidVol[2] = new G4Tubs("Vol_2",0.*cm,outerRadius,1.5*mm,phi_i,phi_f);	//radiation source
+	//solidVol[3] = new G4Tubs("Vol_3",innerRadius,outerRadius,halflenght,phi_i,phi_f);	//second collimator
+	solidVol[4] = new G4Tubs("Vol_4",0.*cm,outerRadius,5.*mm,phi_i,phi_f);			//material
 	solidVol[5] = new G4Tubs("Vol_5",0.*cm,outerRadius,halflenght,phi_i,phi_f);			//sensor
 
 	volume[0] = new G4LogicalVolume(solidVol[0],Brillance,"trigger");
 	volume[1] = new G4LogicalVolume(solidVol[1],Pb,"trigger collimator");
 	volume[2] = new G4LogicalVolume(solidVol[2],Air,"radiation source");
-	volume[3] = new G4LogicalVolume(solidVol[3],Pb,"radiation collimator");
+	//volume[3] = new G4LogicalVolume(solidVol[3],Pb,"radiation collimator");
 	volume[4] = new G4LogicalVolume(solidVol[4],Air,"matter");
 	volume[5] = new G4LogicalVolume(solidVol[5],Brillance,"sensor");
 
 	positions[0] = G4ThreeVector(0.*cm,0.*cm,-5*halflenght);
 	positions[1] = G4ThreeVector(0.*cm,0.*cm,-3*halflenght);
 	positions[2] = G4ThreeVector(0.*cm,0.*cm,-1*halflenght);
-	positions[3] = G4ThreeVector(0.*cm,0.*cm,1*halflenght);
+	//positions[3] = G4ThreeVector(0.*cm,0.*cm,1*halflenght);
 	positions[4] = G4ThreeVector(0.*cm,0.*cm,3*halflenght);
 	positions[5] = G4ThreeVector(0.*cm,0.*cm,5*halflenght);
 
@@ -117,7 +117,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 	new G4PVPlacement(NULL,positions[0],volume[0],"trigger",	LWorld,false,0,false);
 	new G4PVPlacement(NULL,positions[1],volume[1],"tcollimator",LWorld,false,0,false);
 	new G4PVPlacement(NULL,positions[2],volume[2],"rsource",	LWorld,false,0,false);
-	new G4PVPlacement(NULL,positions[3],volume[3],"rcollimator",LWorld,false,0,false);
+	//new G4PVPlacement(NULL,positions[3],volume[3],"rcollimator",LWorld,false,0,false);
 	new G4PVPlacement(NULL,positions[4],volume[4],"matter",		LWorld,false,0,false);
 	this->Sensor = 
 	new G4PVPlacement(NULL,positions[5],volume[5],"sensor",		LWorld,false,0,false);
@@ -129,7 +129,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 	volume[0]->SetVisAttributes(new G4VisAttributes(G4Colour::Red()));
 	volume[1]->SetVisAttributes(new G4VisAttributes(G4Colour::Cyan()));
 	volume[2]->SetVisAttributes(new G4VisAttributes(G4Colour::Green()));
-	volume[3]->SetVisAttributes(new G4VisAttributes(G4Colour::Cyan()));
+	//volume[3]->SetVisAttributes(new G4VisAttributes(G4Colour::Cyan()));
 	volume[4]->SetVisAttributes(new G4VisAttributes(G4Colour::Yellow()));
 	volume[5]->SetVisAttributes(new G4VisAttributes(G4Colour::Red()));
 	/*** Visual Atributtes ***/
