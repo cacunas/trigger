@@ -28,11 +28,14 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep)
   
   // collect energy and track length step by step
   G4double edep = aStep->GetTotalEnergyDeposit();
+  G4double diffeedep = aStep->GetDeltaEnergy();
+  
   
   G4double stepl = 0.;
   if (aStep->GetTrack()->GetDefinition()->GetPDGCharge() != 0.)
     stepl = aStep->GetStepLength();
-  if(aStep->GetTrack()->GetDefinition()->GetParticleType() == "gamma")
+  if(aStep->GetTrack()->GetDefinition()->GetParticleType() == "gamma" &&
+     diffedep)
     {
       if (volume == detector->GetTrigger())	eventAction->AddNOTP();
       if (volume == detector->GetSensor())	eventAction->AddNOSP();
