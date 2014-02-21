@@ -88,7 +88,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
 	G4double worldEdge = 10*cm;
 
-	G4Box* SWorld = new G4Box("solidWorld", worldEdge,worldEdge,worldEdge);
+	G4Tubs* SWorld = new G4Tubs("solidWorld",0.*cm,3.*cm,7.5*cm,phi_i, phi_f);
 	G4LogicalVolume* LWorld = new G4LogicalVolume(SWorld, Air, "LWorld");
 	G4VPhysicalVolume* PWorld = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,0.),LWorld,"World",NULL,false,0,false);
 
@@ -106,12 +106,12 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 	volume[4] = new G4LogicalVolume(solidVol[4],Air,"matter");
 	volume[5] = new G4LogicalVolume(solidVol[5],Brillance,"sensor");
 
-	positions[0] = G4ThreeVector(0.*cm,0.*cm,-5*halflenght);
-	positions[1] = G4ThreeVector(0.*cm,0.*cm,-3*halflenght);
-	positions[2] = G4ThreeVector(0.*cm,0.*cm,-1*halflenght);
+	positions[0] = G4ThreeVector(0.*cm,0.*cm,-1*(3.*mm+14.*mm+halflenght));
+	positions[1] = G4ThreeVector(0.*cm,0.*cm,-1*(3.*mm+7.*mm));
+	positions[2] = G4ThreeVector(0.*cm,0.*cm,-1.5*mm);
 	//positions[3] = G4ThreeVector(0.*cm,0.*cm,1*halflenght);
-	positions[4] = G4ThreeVector(0.*cm,0.*cm,3*halflenght);
-	positions[5] = G4ThreeVector(0.*cm,0.*cm,5*halflenght);
+	positions[4] = G4ThreeVector(0.*cm,0.*cm,5.*mm);
+	positions[5] = G4ThreeVector(0.*cm,0.*cm,10.*mm+halflenght);
 
 	this->Trigger =
 	new G4PVPlacement(NULL,positions[0],volume[0],"trigger",	LWorld,false,0,false);

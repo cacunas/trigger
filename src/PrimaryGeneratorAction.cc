@@ -40,14 +40,16 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* Event)
 
   G4double x,y,z;
   G4double r = (25.7/2)*mm;
+
   do{
     x = 2*r*G4UniformRand()-r;
     y = 2*r*G4UniformRand()-r;	
   } while (x*x+y*y>r*r);
 
-  z = -1.5*mm + 1.5*(2.0*G4UniformRand()-1.0)*mm;
-
-
+  do{
+    z = -1.5*mm + 1.5*(2.0*G4UniformRand()-1.0)*mm;
+  } while (z*z > (1.5*mm*1.5*mm));
+  
   G4ThreeVector position(x,y,z);
 
   particleGun->SetParticlePosition(position);
