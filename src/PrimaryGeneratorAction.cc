@@ -33,10 +33,10 @@ PrimaryGeneratorAction::~PrimaryGeneratorAction()
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* Event)
 {
-  // G4double cosAlpha = 1. - G4UniformRand()*(1.- std::cos(15*deg));
-  // G4double sinAlpha = std::sqrt(1. - cosAlpha*cosAlpha);
-  // G4double psi      = twopi*G4UniformRand();  //psi uniform in [0, 2*pi]  
-  // G4ThreeVector dir(sinAlpha*std::cos(psi),sinAlpha*std::sin(psi),cosAlpha);
+  G4double cosAlpha = 1. - G4UniformRand()*(1.- std::cos(15*deg));
+  G4double sinAlpha = std::sqrt(1. - cosAlpha*cosAlpha);
+  G4double psi      = twopi*G4UniformRand();  //psi uniform in [0, 2*pi]  
+  G4ThreeVector direction(sinAlpha*std::cos(psi),sinAlpha*std::sin(psi),cosAlpha);
 
   	G4double x,y,z;
 	G4double r = .5*mm;
@@ -69,7 +69,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* Event)
    //   } while(x*x+y*y>r*r);
 
   G4ThreeVector position(x,y,z);
-  G4ThreeVector direction(0.,0.,1.);
+  // G4ThreeVector direction(0.,0.,1.);
 
   particleGun->SetParticlePosition(position);
 
@@ -78,7 +78,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* Event)
 
 
   particleGun->SetParticlePosition(position);
-  G4ThreeVector dir(0.,0.,-1.);
+  G4ThreeVector dir(sinAlpha*std::cos(psi),sinAlpha*std::sin(psi),-cosAlpha);
   particleGun->SetParticleMomentumDirection(dir);
   particleGun->GeneratePrimaryVertex(Event);
 
