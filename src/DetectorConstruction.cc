@@ -116,6 +116,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 	this->Trigger =
 	new G4PVPlacement(NULL,positions[0],volume[0],"trigger",	LWorld,false,0,false);
 	new G4PVPlacement(NULL,positions[1],volume[1],"tcollimator",LWorld,false,0,false);
+	this->Source =
 	new G4PVPlacement(NULL,positions[2],volume[2],"rsource",	LWorld,false,0,false);
 	//new G4PVPlacement(NULL,positions[3],volume[3],"rcollimator",LWorld,false,0,false);
 	new G4PVPlacement(NULL,positions[4],volume[4],"matter",		LWorld,false,0,false);

@@ -10,7 +10,8 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4VPhysicalVolume* PWorld;
     G4VPhysicalVolume* Trigger;
     G4VPhysicalVolume* Sensor;
-
+    G4VPhysicalVolume* Source;
+  
   public:
  
     DetectorConstruction();
@@ -19,6 +20,6 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     const G4VPhysicalVolume* GetWorld()		{return PWorld;};           
     const G4VPhysicalVolume* GetTrigger()	{return Trigger;};
     const G4VPhysicalVolume* GetSensor()	{return Sensor;};
+  	  G4VPhysicalVolume* GetSource()	{return Source;};
 };
-
 #endif
