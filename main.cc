@@ -42,9 +42,10 @@ int main(int argc,char **argv)
    runManager->SetUserInitialization(new DetectorConstruction());
    runManager->SetUserInitialization(new PhysicsList());
    runManager->SetUserAction(new PrimaryGeneratorAction());
-   runManager->SetUserAction(new RunAction());
    runManager->SetUserAction(new EventAction());
    runManager->SetUserAction(new SteppingAction());
+   runManager->SetUserAction(new RunAction());
+   
 
    runManager->Initialize();
    G4UImanager* UImanager = G4UImanager::GetUIpointer();
