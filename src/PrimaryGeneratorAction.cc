@@ -48,21 +48,20 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* Event)
      generar aleatoriamente los gammas dentro de dicho volumen
      (dos gammas con dirección opuesta).
   */
-  G4RunManager* runmanager = G4RunManager::GetRunManager();
-  DetectorConstruction* detector = (DetectorConstruction*) runmanager->GetUserRunAction();
+  // G4RunManager* runmanager = G4RunManager::GetRunManager();
+  // DetectorConstruction* detector = (DetectorConstruction*) runmanager->GetUserDetectorConstruction();
 
-  G4VPhysicalVolume* Source = detector->GetSource();
+  // G4VPhysicalVolume* Source = detector->GetSource();
 
-  G4ThreeVector srcPosition = Source->GetObjectTranslation();
+  G4ThreeVector srcPosition(0.*cm,0.*cm,-1.5*mm);
   
-  G4Tubs* srcTubs = (G4Tubs*) Source->GetLogicalVolume()->GetSolid();
+  // G4Tubs* srcTubs = (G4Tubs*) Source->GetLogicalVolume()->GetSolid();
 
   G4double x,y,z;
-  G4double r = srcTubs->GetOuterRadius();
-  G4double srcHLength = srcTubs->GetZHalfLength();
+  G4double r = (25.7/2)*mm;
+  G4double srcHLength = 1.5*mm;
   /*============================================================================*/
   
-
   do{
     x = r*(2*G4UniformRand()-1) + srcPosition.x();
     y = r*(2*G4UniformRand()-1) + srcPosition.y();	
@@ -71,7 +70,10 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* Event)
   do{
     //z = -1.5*mm + 1.5*(2.0*G4UniformRand()-1.0)*mm;
     z = srcHLength*(2*G4UniformRand()-1) + srcPosition.z();
-  } while (z<=(srcPosition.z()+srcHLength) && z>=(srcPosition.z()-srcHLength));
+  } while (!(
+	   (z <= (srcPosition.z()+srcHLength)) &&
+	   (z >= (srcPosition.z()-srcHLength))
+	     ));
   
   G4ThreeVector position(x,y,z);
 
