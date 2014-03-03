@@ -40,4 +40,8 @@ void RunAction::EndOfRunAction(const G4Run* run)
 
   G4cout << "Number of Triggered Events:\t" << triggerEvent << G4endl;
   G4cout << "Number of Sensed Events:\t" << sensorEvent << G4endl;
+  if (triggerEvent)
+    {
+      G4cout << "Probability: \t\t\tP(S|T)=" << ((double)sensorEvent)/((double)triggerEvent) << G4endl;
+    }
 }
