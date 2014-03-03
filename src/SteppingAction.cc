@@ -14,42 +14,45 @@
 #include "G4PhotoElectricEffect.hh"
 #include "G4ComptonScattering.hh"
 
+#include <iostream>
+using namespace std;
+
 SteppingAction::SteppingAction()                                         
 {
   detector = (DetectorConstruction*) G4RunManager::GetRunManager()->GetUserDetectorConstruction();
   eventAction = (EventAction*) G4RunManager::GetRunManager()->GetUserEventAction();               
- }
+}
 
- SteppingAction::~SteppingAction()
+SteppingAction::~SteppingAction()
 { }
 
 void SteppingAction::UserSteppingAction(const G4Step* aStep)
 {
   // get volume of the current step
   G4VPhysicalVolume* volume 
-  = aStep->GetPreStepPoint()->GetTouchableHandle()->GetVolume();
+    = aStep->GetPreStepPoint()->GetTouchableHandle()->GetVolume();
   
   // collect energy and track length step by step
   G4double edep = aStep->GetTotalEnergyDeposit();
-    
-  G4double stepl = 0.;
-  if (aStep->GetTrack()->GetDefinition()->GetPDGCharge() != 0.)
-    stepl = aStep->GetStepLength();
-  if(aStep->GetTrack()->GetDefinition()->GetParticleType() == "gamma" &&
-     //(
-     // (aStep->GetTrack()->GetCreatorProcess()->GetProcessName() == "phot") ||
-     // (aStep->GetTrack()->GetCreatorProcess()->GetProcessName() == "compt")
-     // )
-    edep)
-    {
-      /* DEBUG =======================================================*/
-      G4cout << "DEBUG: Hello World!\n";
-      G4String out = aStep->GetTrack()->GetCreatorProcess()->GetProcessName();
-      if (out != NULL) G4cout << out << G4endl;
-      G4cout << "Energy deposited:\t" << edep << G4endl;
-      /*==============================================================*/
 
-      if (volume == detector->GetTrigger())	eventAction->AddNOTP();
-      if (volume == detector->GetSensor())	eventAction->AddNOSP();
-    }      
+  
+  G4Track* track = aStep->GetTrack();
+  // G4int trackid = track->GetTrackID();
+  // G4int parentid = track->GetParentID();
+  G4String particlename = track->GetDefinition()->GetParticleType();
+  G4String volumename = volume->GetName();
+  const G4VProcess* process = track->GetCreatorProcess();
+  G4String creatorprocname;
+  if (process) creatorprocname = process->GetProcessName();
+  
+  if (aStep->GetTrack()->GetDefinition()->GetParticleType() == "gamma" && edep)
+    {
+      if (volume == detector->GetTrigger()) eventAction->AddNOTP();
+      if (volume == detector->GetSensor())  eventAction->AddNOSP();
+    }
+  else if (creatorprocname == "compt")
+    {
+      if (volume == detector->GetTrigger()) eventAction->AddNOTP();
+      if (volume == detector->GetSensor())  eventAction->AddNOSP();
+    }
 }
