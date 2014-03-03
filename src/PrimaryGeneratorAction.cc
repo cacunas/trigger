@@ -58,7 +58,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* Event)
   // G4Tubs* srcTubs = (G4Tubs*) Source->GetLogicalVolume()->GetSolid();
 
   G4double x,y,z;
-  G4double r = (25.7/2)*mm;
+  G4double r = 1.5*mm;
   G4double srcHLength = 1.5*mm;
   /*============================================================================*/
   
