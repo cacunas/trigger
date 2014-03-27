@@ -2,6 +2,7 @@
 #include "RunAction.hh"
 #include "Analysis.hh"
 #include "G4Run.hh"
+#include "G4RunManager.hh"
 #include "DetectorConstruction.hh"
 
 #include <iostream>
@@ -35,14 +36,15 @@ void RunAction::EndOfRunAction(const G4Run* run)
   G4cout << "Run " << run->GetRunID() << " done." << G4endl;
 
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+  G4RunManager* runmanager = G4RunManager::GetRunManager();
   
   analysisManager->Write();
   analysisManager->CloseFile();
 
-  DetectorConstruction* detector = (DetectorConstruction*) this->GetUserDetectorConstruction();
-  const G4double distance = detector->GetXDist();
+  DetectorConstruction* detector = (DetectorConstruction*) runmanager->GetUserDetectorConstruction();
+  G4double distance = detector->GetXDist();
   
-  G4cout << "Distance used for present run:\t" << distance << G4endl;
+  G4cout << "Distance used for present run:\t" << distance << " [mm]" << G4endl;
   G4cout << "Number of Triggered Events:\t" << triggerEvent << G4endl;
   G4cout << "Number of Sensed Events:\t" << sensorEvent << G4endl;
   if (triggerEvent)
