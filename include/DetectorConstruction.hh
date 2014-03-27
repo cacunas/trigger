@@ -11,6 +11,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4VPhysicalVolume* Trigger;
     G4VPhysicalVolume* Sensor;
     G4VPhysicalVolume* Source;
+  G4double XDist;
   
   public:
  
@@ -21,5 +22,6 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     const G4VPhysicalVolume* GetTrigger()	{return Trigger;};
     const G4VPhysicalVolume* GetSensor()	{return Sensor;};
   	  G4VPhysicalVolume* GetSource()	{return Source;};
+  const G4double GetXDist() {return XDist;};
 };
 #endif

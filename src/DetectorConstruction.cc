@@ -81,7 +81,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   //positions[3] = G4ThreeVector(0.*cm,0.*cm,1*halflenght);
   // positions[4] = G4ThreeVector(0.*cm,0.*cm,5.*mm);
   /* Modificar este valor para distintas distancias  */
-  positions[5] = G4ThreeVector(0.*cm,0.*cm,15.*mm+halflenght);
+  this->XDist = 15.*mm;
+  positions[5] = G4ThreeVector(0.*cm,0.*cm,XDist+halflenght);
 
   this->Trigger =
     new G4PVPlacement(NULL,positions[0],volume[0],"trigger",	LWorld,false,0,false);
