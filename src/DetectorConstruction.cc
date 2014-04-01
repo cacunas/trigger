@@ -55,7 +55,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
   //G4double worldEdge = 10*cm;
 
-  G4Tubs* SWorld = new G4Tubs("solidWorld",0.*cm,3.*cm,7.5*cm,phi_i, phi_f);
+  G4Tubs* SWorld = new G4Tubs("solidWorld",0.*cm,3.*cm,9.*cm,phi_i, phi_f);
   G4LogicalVolume* LWorld = new G4LogicalVolume(SWorld, Air, "LWorld");
   G4VPhysicalVolume* PWorld =
     new G4PVPlacement(NULL,G4ThreeVector(0.,0.,0.),LWorld,"World",NULL,false,0,false);
@@ -81,7 +81,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   //positions[3] = G4ThreeVector(0.*cm,0.*cm,1*halflenght);
   // positions[4] = G4ThreeVector(0.*cm,0.*cm,5.*mm);
   /* Modificar este valor para distintas distancias  */
-  this->XDist = 15.*mm;
+  this->XDist = 80.*mm;
   positions[5] = G4ThreeVector(0.*cm,0.*cm,XDist+halflenght);
 
   this->Trigger =
