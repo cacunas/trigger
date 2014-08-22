@@ -19,6 +19,8 @@
 //#include "G4OpticalSurface.hh"
 //#include "G4LogicalBorderSurface.hh"
 
+using namespace CLHEP;
+
 DetectorConstruction::DetectorConstruction(){}
 
 DetectorConstruction::~DetectorConstruction(){}
